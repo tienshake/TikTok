@@ -1,11 +1,82 @@
 .wrapper {
+    --search-border-radius: 92px;
+    --search-height: 46px;
+    --search-top-spacer: 12px;
+    --search-button-width: 52px;
     width: 100%;
     height: var(--default-layout-header-height, 60px);
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
     display: flex;
     justify-content: center;
-    .inner {
+}
+
+.inner {
+    height: 100%;
+    width: var(--default-layout-width);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.search,
+.search-result {
+    width: 361px;
+}
+.search {
+    position: relative;
+    height: var(--search-height);
+    background-color: #f1f1f2;
+    border-radius: var(--search-border-radius);
+    padding: 0 0 0 16px;
+    display: flex;
+    border: 1.5px solid transparent;
+
+    input {
+        flex: 1;
+        font-size: 1.6rem;
+        background-color: transparent;
+        color: var(--black);
         height: 100%;
-        width: var(--default-layout-width);
+        caret-color: var(--primary);
+    }
+    // đổi phần tử khác khi ấn vào phần tử này
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: rgba(22, 24, 35, 0.75);
+    }
+    &::after {
+        position: absolute;
+        content: '';
+        width: 1px;
+        //set top và height
+        top: var(--search-top-spacer);
+        height: calc(var(--search-height) - var(--search-top-spacer) * 2);
+        background-color: #a8a8ac;
+        right: 52px;
+    }
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+.clear,
+.loading {
+    color: rgba(22, 24, 35, 0.34);
+    position: absolute;
+    right: calc(var(--search-button-width) + 18px);
+    // căn giữa khi position
+    top: 50%;
+    transform: translateY(-50%);
+}
+.search-btn {
+    font-size: 1.8rem;
+    color: #a8a8ac;
+    width: 52px;
+    height: 100%;
+    border-top-right-radius: var(--search-border-radius);
+    border-bottom-right-radius: var(--search-border-radius);
+    &:hover {
+        background: rgba(22, 24, 35, 0.03);
+        cursor: pointer;
+    }
+    &:active {
+        background-color: rgba(22, 24, 35, 0.06);
     }
 }
