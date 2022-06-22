@@ -6,6 +6,7 @@ function App() {
     return (
         <Router>
             <div className="App">
+                <div>alo</div>
                 <Routes>
                     {publicRoutes?.map((route, i) => {
                         const Page = route.component;
